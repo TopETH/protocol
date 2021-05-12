@@ -5,9 +5,9 @@ import "./strategy-mith-farm-base.sol";
 
 contract StrategyMisUsdtLp is StrategyMithFarmBase {
     // Token addresses
-    address public mith_rewards = 0x14E33e1D6Cc4D83D7476492C0A52b3d4F869d892;
-    address public uni_mis_usdt_lp = 0x066F3A3B7C8Fa077c71B9184d862ed0A4D5cF3e0;
-    address public token_mis = 0x4b4D2e899658FB59b1D518b68fe836B100ee8958;
+    address public mith_rewards = 0x717d21829188d3b1B16c428641691b5ecA1AEC15;
+    address public uni_mis_usdt_lp = 0x097b21e4784c2B224FD8B880939f75B2E9f4dBa5;
+    address public token_mis = 0x024B6e7DC26F4d5579bDD936F8d7BC31f2339999;
 
     constructor(address _strategist)
         public

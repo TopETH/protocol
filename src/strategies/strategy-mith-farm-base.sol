@@ -9,7 +9,7 @@ interface MisStaking {
 
 abstract contract StrategyMithFarmBase is StrategyStakingRewardsBase {
     // Token addresses
-    address public mis = 0x4b4D2e899658FB59b1D518b68fe836B100ee8958;
+    address public mis = 0x024B6e7DC26F4d5579bDD936F8d7BC31f2339999;
     address public usdt = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
 
     // USDT/<token1> pair

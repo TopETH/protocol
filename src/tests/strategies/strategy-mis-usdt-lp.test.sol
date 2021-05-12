@@ -10,8 +10,8 @@ import "../../strategies/strategy-mis-usdt-lp.sol";
 
 contract StrategyMisUsdtLpTest is StrategyMithMisFarmTestBase {
     function setUp() public {
-        want = 0x066F3A3B7C8Fa077c71B9184d862ed0A4D5cF3e0; // Sushiswap MIS-USDT
-        token1 = 0x4b4D2e899658FB59b1D518b68fe836B100ee8958; // MIS
+        want = 0x097b21e4784c2B224FD8B880939f75B2E9f4dBa5; // Sushiswap MIS-USDT
+        token1 = 0x024B6e7DC26F4d5579bDD936F8d7BC31f2339999; // MIS
 
         strategist = address(this);
 

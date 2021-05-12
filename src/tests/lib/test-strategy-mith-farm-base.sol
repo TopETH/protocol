@@ -16,7 +16,7 @@ contract StrategyMithFarmTestBase is DSTestSushiBase {
 
     address strategist;
 
-    address mis = 0x4b4D2e899658FB59b1D518b68fe836B100ee8958;
+    address mis = 0x024B6e7DC26F4d5579bDD936F8d7BC31f2339999;
 
     uint256 performanceInitiatorFee = 75;
     uint256 performanceStrategistFee = 225;
