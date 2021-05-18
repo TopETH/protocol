@@ -3,14 +3,15 @@ pragma solidity ^0.6.7;
 import "../lib/hevm.sol";
 import "../lib/user.sol";
 import "../lib/test-approx.sol";
-import "../lib/test-sushi-base.sol";
+import "../lib/test-sushi-base-curve.sol";
 
 import "../../interfaces/strategy.sol";
 import "../../interfaces/uniswapv2.sol";
+import "../../interfaces/curvefi.sol";
 
 import "../../mith-jar.sol";
 
-contract StrategyMithFarmTestBase is DSTestSushiBase {
+contract StrategyMithFarmTestBase is DSTestSushiBaseCurve {
     address want;
     address token1;
 
@@ -25,41 +26,31 @@ contract StrategyMithFarmTestBase is DSTestSushiBase {
     MithJar mithJar;
     IStrategy strategy;
 
-    function _getWant(uint256 usdtAmount, uint256 amount) internal {
-        address[] memory path = new address[](3);
-        path[0] = weth;
-        path[1] = usdt;
-        path[2] = token1;
+    function _getWant(uint256 usdtAmount) internal {
 
-        _getERC20(usdt, usdtAmount);
-        _getERC20WithPath(amount, path);
+        _getERC20(usdt, 5000000);
 
         uint256 _usdt = IERC20(usdt).balanceOf(address(this));
-        uint256 _token1 = IERC20(token1).balanceOf(address(this));
 
-        IERC20(usdt).safeApprove(address(sushiRouter), 0);
-        IERC20(usdt).safeApprove(address(sushiRouter), _usdt);
+        IERC20(usdt).safeApprove(address(curveRouter), 0);
+        IERC20(usdt).safeApprove(address(curveRouter), _usdt);
 
-        IERC20(token1).safeApprove(address(sushiRouter), 0);
-        IERC20(token1).safeApprove(address(sushiRouter), _token1);
-
-        sushiRouter.addLiquidity(
-            usdt,
-            token1,
-            _usdt,
-            _token1,
-            0,
-            0,
-            address(this),
-            now + 60
+        uint256[4] memory curve_swap_amounts;
+        curve_swap_amounts[0] = 0;
+        curve_swap_amounts[1] = 0;
+        curve_swap_amounts[2] = 0;
+        curve_swap_amounts[3] = _usdt;
+        curveRouter.add_liquidity(
+            curvePool,
+            curve_swap_amounts,
+            0
         );
     }
 
     // **** Tests ****
 
     function _test_withdraw_release() internal {
-        uint256 decimals = ERC20(token1).decimals();
-        _getWant(10000 * 10 ** 6, 4000 * (10**decimals)); // USDT decimals is 6
+        _getWant(10000 * 10 ** 6); // USDT decimals is 6
         uint256 _want = IERC20(want).balanceOf(address(this));
         IERC20(want).safeApprove(address(mithJar), 0);
         IERC20(want).safeApprove(address(mithJar), _want);
@@ -78,8 +69,7 @@ contract StrategyMithFarmTestBase is DSTestSushiBase {
     }
 
     function _test_get_earn_harvest_rewards() internal {
-        uint256 decimals = ERC20(token1).decimals();
-        _getWant(10000 * 10 ** 6, 4000 * (10**decimals)); // USDT decimals is 6
+        _getWant(10000 * 10 ** 6); // USDT decimals is 6
         uint256 _want = IERC20(want).balanceOf(address(this));
         IERC20(want).safeApprove(address(mithJar), 0);
         IERC20(want).safeApprove(address(mithJar), _want);

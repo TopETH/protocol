@@ -10,8 +10,8 @@ import "../../strategies/strategy-mic-usdt-lp.sol";
 
 contract StrategyMicUsdtLpTest is StrategyMithFarmTestBase {
     function setUp() public {
-        want = 0xC9cB53B48A2f3A9e75982685644c1870F1405CCb; // Sushiswap MIC-USDT
-        token1 = 0x368B3a58B5f49392e5C9E4C998cb0bB966752E51; // MIC
+        want = 0x2B26239f52420d11420bC0982571BFE091417A7d; // Sushiswap MIC-USDT
+        token1 = 0xEEd0c8d2DA6d243329a6F4A8C2aC61A59ecBFa02; // MIC
 
         strategist = address(this);
 
