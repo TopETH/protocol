@@ -17,7 +17,7 @@ abstract contract StrategyBaseCurve {
     // Performance Fee addresses and staking contract address
     address public initiator = 0xb919F030B334A20424e942E77d22b99dAdf15B4B;
     address public stakingContract;
-    address public treasury = 0xdC11e3B995845a94531D45b563C053AFaddC9aDC;
+    address public treasury = 0xccd272D9A0f33FbF76EAe65b62cd1A252E7529FB;
 
     // Performance fees - start with 3%
     uint256 public performanceInitiatorFee = 75;
